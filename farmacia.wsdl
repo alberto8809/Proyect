@@ -1,0 +1,55 @@
+<WSDL>	
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<element name="Farmacia">
+				<complexType>
+					<sequence>
+						<element name="Producto" maxOccurs="unbounded" minOccurs="1">
+							<complexType>
+								<sequence>
+									<element name="Nombre" type="string"/>
+									<element name="Compuestos" type="integer"/>
+									<element name="Precio" type="string"/>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+	</types>
+
+
+			<message name="getProductDetailsRequest">
+			  <part name="Nombre" type="xs:string" />
+			</message>
+
+			<message name="getProducDetailsResponse">
+			  <part name="ObtenerProducto" type="Producto"/>
+			</message>
+
+
+			<message name="getCompuestoTypeRequest">
+			  <part name="Compuestos" type="xs:string" />
+			</message>
+	
+			<message name="getNameTypeResponse">
+			  <part name="Nombre" type="xs:string"/>
+			</message>
+
+
+			<portType name="UserDetails">
+
+
+		  <operation name="getProduct">
+		    <input message="getProductDetailsRequest"/>
+		    <output message="getProducDetailsResponse"/>
+		  </operation>
+
+		  <operation name="getCompuestos">
+		    <input message="getCompuestoTypeRequest"/>
+		    <output message="getNameTypeResponse"/>
+		  </operation>
+
+		</portType>
+</WSDL>

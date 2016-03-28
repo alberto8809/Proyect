@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+<definitions name="Farmacia"
+  targetNamespace="http://example.com/farmacia.wsdl"
+          xmlns:tns="http://example.com/farmacia.wsdl"
+          xmlns:xsd1="http://example.com/farmacia.xsd"
+          xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+          xmlns="http://schemas.xmlsoap.org/wsdl/">
+ 
+	<types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<element name="Banco">
+				<complexType>
+					<sequence>
+						<element name="usuario" maxOccurs="unbounded" minOccurs="1">
+							<complexType>
+								<sequence>
+									<element name="IdUsuario" type="string"/>
+									<element name="NoCuenta" type="integer"/>
+									<element name="TipoCuenta" type="string"/>
+									<element name="Persona" maxOccurs="1">
+										<complexType>
+											<sequence>
+												<element name="Nombre" type="string"/>
+												<element name="ApellidoP" type="string"/>
+												<element name="ApellidoM" type="string"/>
+											</sequence>
+										</complexType>					
+									</element>				
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+		</schema>
+	</types>
+	
+			<message name="getUserDetailsRequest">
+			  <part name="IdUsuario" type="xs:string" />
+			</message>
+	
+			<message name="getUserDetailsResponse">
+			  <part name="ObtenerDatosUsuario" type="usuario"/>
+			</message>
+
+
+	
+			<message name="getUserAccTypeRequest">
+			  <part name="IdUsuario" type="xs:string" />
+			</message>
+	
+			<message name="getUserAccTypeResponse">
+			  <part name="TipoCuenta" type="xs:string"/>
+			</message>
+
+
+	
+			<message name="getIdUSerDetailsRequest">
+			  <part name="IdUsuario" type="xs:string" />
+			</message>
+
+	
+			<message name="getPersonAccTypeResponse">
+			  <part name="ObtenPersona" type="Persona" />
+			</message>
+	
+	
+			<message name="getIdUSerTDetailsRequest">
+			  <part name="nombre" type="xs:string" />
+			</message>
+
+	
+			<message name="getNumCuenTypeResponse">
+			  <part name="ObtenPersona" type="Persona" />
+			</message>
+	
+
+    
+
+		<portType name="UserDetails">
+
+
+
+		  <operation name="getIDUsuario">
+		    <input message="getUserDetailsRequest"/>
+		    <output message="getUserDetailsResponse"/>
+		  </operation>
+
+		  <operation name="getTypeCuenta">
+		    <input message="getUserAccTypeRequest"/>
+		    <output message="getUserAccTypeResponse"/>
+		  </operation>
+
+
+		   <operation name="getPersonaIdType">
+		    <input message="getIdUSerDetailsRequest"/>
+		    <output message="getPersonAccTypeResponse"/>
+		  </operation>
+
+		  <operation name="getNameUserDetails">
+		    <input message="getIdUSerTDetailsRequest"/>
+		    <output message="getNumCuenTypeResponse"/>
+		  </operation>
+
+		</portType>
+	
+	 <binding name="Farmacia" type="xs:string" languaje="java">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="GetAll">
+           <soap:operation soapAction="http://example.com/GetAll"/>
+           <input>
+               <soap:body use="literal"/>
+           </input>
+           <output>
+               <soap:body use="literal"/>
+           </output>
+        </operation>
+    </binding>
+ 
+    <service name="FarmaciaService">
+        <documentation>My first service</documentation>
+        <port name="4950" binding="tns:StockQuoteBinding">
+           <soap:address location="172.16.10.164"/>
+        </port>
+    </service>
+ 
+</definitions>

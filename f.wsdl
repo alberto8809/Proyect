@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<definitions name="Farmacia"
+  targetNamespace="http://example.com/farmacia.wsdl"
+          xmlns:tns="http://example.com/farmacia.wsdl"
+          xmlns:xsd1="http://example.com/farmacia.xsd"
+          xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+          xmlns="http://schemas.xmlsoap.org/wsdl/">
+ 
+    <types>
+       <schema targetNamespace="http://example.com/farmacia.xsd"
+              xmlns="http://www.w3.org/2000/10/XMLSchema">
+           <element name="Farmacia">
+              <complexType>
+                  <all>
+                      <element name="FarmaciaSymbol" type="string"/>
+                  </all>
+              </complexType>
+           </element>
+           <element name="Farmacia1">
+              <complexType>
+                  <all>
+                      <element name="Precio" type="float"/>
+                  </all>
+              </complexType>
+           </element>
+       </schema>
+    </types>
+    
+    <message name="GetAllInput">
+        <part name="body" element="xs:string"/>
+    </message>
+ 
+    <message name="GetAllOutput">
+        <part name="body" element="xs:string"/>
+    </message>
+
+    <message name="GetMedicamentoInput">
+        <part name="body" element="xs:string"/>
+    </message>
+ 
+    <message name="GetMedicamentoOutput">
+        <part name="body" element="xs:string"/>
+    </message> 
+    <portType name="FarmaciaPortType">
+        <operation name="GetAll">
+           <input message="GetAllInput"/>
+           <output message="GetAllOutput"/>
+        </operation>
+        <operation name="GetMedicamento">
+           <input message="GetMedicamentoInput"/>
+           <output message="GetMedicamentoOutput"/>
+        </operation>
+    </portType>
+ 
+    <binding name="Farmacia" type="xs:string" languaje="java">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <operation name="GetAll">
+           <soap:operation soapAction="http://example.com/GetAll"/>
+           <input>
+               <soap:body use="literal"/>
+           </input>
+           <output>
+               <soap:body use="literal"/>
+           </output>
+        </operation>
+    </binding>
+ 
+    <service name="FarmaciaService">
+        <documentation>My first service</documentation>
+        <port name="4950" binding="tns:StockQuoteBinding">
+           <soap:address location="172.16.10.164"/>
+        </port>
+    </service>
+ 
+</definitions>

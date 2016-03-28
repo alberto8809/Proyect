@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<soap:Envelope xmlns:soap="http:www.nada.com">
+		<soap:Body>
+			<usuario>
+				<IdUsuario>2222</IdUsuario>
+				<NoCuenta>1111</NoCuenta>
+				<TipoCuenta>Gold</TipoCuenta>
+			</usuario>
+			<persona>
+				<Nombre>Mario</Nombre>
+				<ApellidoP>reyes</ApellidoP>
+				<ApellidoM>Dominguez</ApellidoM>
+			</persona>
+		</soap:Body>
+
+</soap:Envelope>
